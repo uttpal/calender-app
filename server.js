@@ -39,7 +39,7 @@ app.use(express.static(__dirname + '/'));
 app.set('view engine', 'ejs'); 									
 
 // auth requirements
-app.use(session({ secret: 'mysupercalender' })); 	// secret key
+app.use(session({ secret: 'mysupercalendar' })); 	// secret key
 app.use(passport.initialize());
 app.use(passport.session()); 							// persistent login sessions
 
@@ -49,6 +49,6 @@ require('./app/routes.js')(app, passport); 				// load our routes with passport
 
 // launching ---------------------------------------------------------------------
 app.listen(port);
-console.log('Have Fun calendering on' + port);
+console.log('Have Fun calendaring on ' + port);
 
 

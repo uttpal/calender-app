@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Dedicated calendar App</title>
+    <title>Dedicated Calender App</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
     <style>
@@ -13,12 +13,20 @@
 <div class="container">
 
     <div class="jumbotron text-center">
-        <h1> Calendar App</h1>
+        <h1> Calender App</h1>
 
-        <p>Login or Register with:</p>
+        <p>Select Operation:</p>
 
 
-        <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+        <a href="/api/allevents" class="btn btn-danger"> Allevents</a>
+         
+
+         <form action="/api/rangeofevents" method="get">
+          Min date: <input type="text" name="timeMin"><br>
+          Max date: <input type="text" name="timeMax"><br>
+          <input type="submit" value="rangeofevents">
+        </form> 
+        
     </div>
 
 </div>

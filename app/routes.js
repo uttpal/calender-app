@@ -1,5 +1,5 @@
 // app/routes.js
-var calender         = require('./apis/calender.js'); //load endpoints
+var calendar         = require('./apis/calendar.js'); //load endpoints
 
 module.exports = function(app, passport) {
 
@@ -15,16 +15,16 @@ module.exports = function(app, passport) {
         res.redirect('/');
     });
    
-    //calender
+    //calendar
 
-    app.get(  '/calender',  ensureAuthenticated, function(req, res) {
-        res.render('calender.ejs'); 
+    app.get(  '/calendar',  ensureAuthenticated, function(req, res) {
+        res.render('calendar.ejs'); 
     });
 
     //REST APIs
 
-    app.get(  '/api/allevents',ensureAuthenticated,calender.allevents );
-    app.get(  '/api/rangeofevents',ensureAuthenticated,calender.allevents );
+    app.get(  '/api/allevents',ensureAuthenticated,calendar.allevents );
+    app.get(  '/api/rangeofevents',ensureAuthenticated,calendar.rangeofevents );
 
 
     //google+ auth routes--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ module.exports = function(app, passport) {
     // the callback after google has authenticated the user
     app.get('/auth/google/callback',
             passport.authenticate('google', {
-                    successRedirect : '/calender',
+                    successRedirect : '/calendar',
                     failureRedirect : '/'
             }));
 
