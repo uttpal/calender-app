@@ -30,7 +30,7 @@ module.exports = function(passport) {
     // Google+ login ------------------------------------------------------------
     // ---------------------------------------------------------------------------
 
-    passport.use(new GoogleStrategy({
+    var strategy = new GoogleStrategy({
 
         clientID        : configAuth.googleAuth.clientID,
         clientSecret    : configAuth.googleAuth.clientSecret,
@@ -59,7 +59,7 @@ module.exports = function(passport) {
                     newUser.name  = profile.displayName;
                     newUser.email = profile.emails[0].value; // pull the first email
                     newUser.accessToken  = accessToken;
-                    newUser.refreshToken = refreshToken;
+                    //newUser.refreshToken = refreshToken;
 
                     // save the user
                     newUser.save(function(err) {
@@ -71,7 +71,14 @@ module.exports = function(passport) {
             });
         });
 
-    }));
+    })
+
+
+
+
+
+    passport.use(strategy);
+
 
 };
     

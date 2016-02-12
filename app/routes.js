@@ -1,4 +1,5 @@
 // app/routes.js
+var calender         = require('./apis/calender.js'); //load endpoints
 
 module.exports = function(app, passport) {
 
@@ -7,31 +8,29 @@ module.exports = function(app, passport) {
         res.render('index.ejs'); 
     });
 
-    //local auth routes-------------------------------------------------------------------------
-    //------------------------------------------------------------------------------------------
-    
-    //login form
-    app.get('/login', function(req, res) {
-        res.render('login.ejs'); 
-    });
-
-    //signup
-    app.get('/signup', function(req, res) {
-
-        res.render('signup.ejs');
-    });
 
    //logout
    app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
     });
+   
+    //calender
+
+    app.get(  '/calender',  ensureAuthenticated, function(req, res) {
+        res.render('calender.ejs'); 
+    });
+
+    //REST APIs
+
+    app.get(  '/api/allevents',ensureAuthenticated,calender.allevents );
+    app.get(  '/api/rangeofevents',ensureAuthenticated,calender.allevents );
 
 
     //google+ auth routes--------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------  
 
-    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email','https://www.googleapis.com/auth/calendar'] }));
 
     // the callback after google has authenticated the user
     app.get('/auth/google/callback',
